@@ -1,5 +1,5 @@
 {
-  "name": "node-red-gotify",
+  "name": "node-red-contrib-gotify-notification",
   "node-red": {
     "nodes": {
       "push": "nodes/push/gotify-push.js",
