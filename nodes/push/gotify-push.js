@@ -17,15 +17,24 @@ module.exports = function (RED) {
           return;
         }
 
+        const message = config.override
+          ? config.message
+          : msg.message || msg.payload;
+
         const requestData = {
-          message: config.override
-            ? config.message || msg.payload
-            : msg.payload,
-          title: config.override ? config.title || msg.title : msg.title,
+          message:
+            typeof message === "string" ? message : JSON.stringify(message),
+          title: config.override
+            ? typeof config.title === "string"
+              ? config.title
+              : JSON.stringify(config.title || msg.title)
+            : typeof msg.title === "string"
+            ? msg.title
+            : JSON.stringify(msg.title),
           priority: config.override
             ? config.priority || msg.priority
             : msg.priority,
-          extras: config.override ? config.extras || msg.extras : msg.extras,
+          extras: config.override ? config.extras : msg.extras,
           server: serverConfig.server,
           token: serverConfig.token,
         };
@@ -35,6 +44,7 @@ module.exports = function (RED) {
         node.send(msg);
       } catch (error) {
         node.error(error, msg);
+        console.log(error);
       }
     });
   }
