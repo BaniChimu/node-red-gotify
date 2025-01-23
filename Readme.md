@@ -9,7 +9,7 @@ A comprehensive module for Node-RED facilitating the sending and receiving of no
 In order to install the module run
 
 ```
-npm install <placeholder>
+npm install node-red-contrib-gotify-notification
 ```
 
 ## Publish Node Configuration
