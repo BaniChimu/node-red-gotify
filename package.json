@@ -1,6 +1,7 @@
 {
   "name": "node-red-contrib-gotify-notification",
   "node-red": {
+    "version": ">=4.0.8",
     "nodes": {
       "push": "nodes/push/gotify-push.js",
       "subscribe": "nodes/subscribe/gotify-subscribe.js",
@@ -8,7 +9,10 @@
       "subscribe-configuration": "nodes/subscribe-configuration/gotify-server-subscribe.js"
     }
   },
-  "version": "1.0.4",
+  "version": "1.0.5",
+  "engines": {
+    "node": ">=20"
+  },
   "keywords": [
     "node-red",
     "gotify"
