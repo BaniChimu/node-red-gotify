@@ -1,6 +1,6 @@
 # Node-RED Gotify Integration
 
-![Node-RED Gotify](/images/generic.png)
+![Node-RED Gotify](https://github.com/BaniChimu/node-red-gotify/raw/main/images/generic.png)
 
 A comprehensive module for Node-RED facilitating the sending and receiving of notifications via [Gotify](https://gotify.net/).
 
@@ -14,7 +14,7 @@ npm install <placeholder>
 
 ## Publish Node Configuration
 
-![Publish Node](/images/node-publish.png)
+![Publish Node](https://github.com/BaniChimu/node-red-gotify/raw/main/images/node-publish.png)
 
 ### Configuration:
 
@@ -51,7 +51,7 @@ After sending a notification, the node outputs the notification details as a JSO
 
 ## Subscribe Node Configuration
 
-![Subscribe Node](/images/node-subscribe.png)
+![Subscribe Node](https://github.com/BaniChimu/node-red-gotify/raw/main/images/node-subscribe.png)
 
 ### Configuration:
 
