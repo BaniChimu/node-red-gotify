@@ -9,9 +9,9 @@
       "subscribe-configuration": "nodes/subscribe-configuration/gotify-server-subscribe.js"
     }
   },
-  "version": "1.1.0",
+  "version": "1.1.1",
   "engines": {
-    "node": ">=20"
+    "node": ">=12"
   },
   "keywords": [
     "node-red",
