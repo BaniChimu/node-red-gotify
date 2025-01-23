@@ -8,7 +8,7 @@
       "subscribe-configuration": "nodes/subscribe-configuration/gotify-server-subscribe.js"
     }
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": [],
   "author": "Dominika Jadowska",
   "license": "GNU General Public License v3.0",
