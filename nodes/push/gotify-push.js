@@ -39,7 +39,7 @@ module.exports = function (RED) {
     });
   }
 
-  RED.nodes.registerType("push", PushToGotify);
+  RED.nodes.registerType("gotify-push", PushToGotify);
 };
 
 async function postToGotify({

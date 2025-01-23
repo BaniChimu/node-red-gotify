@@ -1,5 +1,5 @@
 <script type="text/javascript">
-  RED.nodes.registerType("push", {
+  RED.nodes.registerType("gotify-push", {
     category: "gotify",
     color: "#808dd9",
     defaults: {
@@ -21,7 +21,7 @@
   });
 </script>
 
-<script type="text/html" data-template-name="push">
+<script type="text/html" data-template-name="gotify-push">
   <div class="form-row">
     <label for="node-input-name"> <i class="fa fa-tag"></i> Name </label>
     <input type="text" id="node-input-name" placeholder="Name" />
@@ -59,7 +59,12 @@
 
   <div class="form-row">
     <label for="node-input-extras"> <i class="fa fa-cogs"></i> Extras </label>
-    <input type="text" id="node-input-extras" placeholder="Extras" data-i18n="[placeholder]node-red:common.label.json" />
+    <input
+      type="text"
+      id="node-input-extras"
+      placeholder="Extras"
+      data-i18n="[placeholder]node-red:common.label.json"
+    />
   </div>
 
   <div class="form-row">
@@ -79,7 +84,7 @@
   </div>
 </script>
 
-<script type="text/html" data-help-name="push">
+<script type="text/html" data-help-name="gotify-push">
   <p>A node allowing you to push messages to your gotify server.</p>
   <ul>
     <li>
@@ -95,9 +100,9 @@
       <br />
     </li>
     <li>
-      <b>extras</b> - The extras of the message to be sent to gotify, in json format
+      <b>extras</b> - The extras of the message to be sent to gotify, in json
+      format
       <br />
     </li>
   </ul>
 </script>
-

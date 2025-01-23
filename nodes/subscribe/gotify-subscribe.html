@@ -1,10 +1,13 @@
 <script type="text/javascript">
-  RED.nodes.registerType("subscribe", {
+  RED.nodes.registerType("gotify-subscribe", {
     category: "gotify",
     color: "#808dd9",
     defaults: {
       name: { value: "" },
-      server: { value: "", type: "gotify-server-subscribe" },
+      server: {
+        value: "",
+        type: "gotify-server-subscribe",
+      },
     },
     inputs: 0,
     outputs: 1,
@@ -15,7 +18,7 @@
   });
 </script>
 
-<script type="text/html" data-template-name="subscribe">
+<script type="text/html" data-template-name="gotify-subscribe">
   <div class="form-row">
     <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
     <input type="text" id="node-input-name" placeholder="Name" />
@@ -28,7 +31,7 @@
   </div>
 </script>
 
-<script type="text/html" data-help-name="subscribe">
+<script type="text/html" data-help-name="gotify-subscribe">
   <p>
     A node that subscribes to Gotify notifications.
     <b>Don't loop this node back into the same notification push node.</b>

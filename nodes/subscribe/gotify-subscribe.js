@@ -33,5 +33,5 @@ module.exports = function (RED) {
       this.error(error);
     }
   }
-  RED.nodes.registerType("subscribe", RemoteServerNode);
+  RED.nodes.registerType("gotify-subscribe", RemoteServerNode);
 };
