@@ -1,0 +1,32 @@
+<script type="text/javascript">
+  RED.nodes.registerType("gotify-server-push", {
+    category: "config",
+    defaults: {
+      server: { value: "https://your.gotify.server", required: true },
+      token: { value: "", required: true },
+      appName: { value: "Your App Name" },
+    },
+    label: function () {
+      return this.appName || this.server;
+    },
+  });
+</script>
+
+<script type="text/html" data-template-name="gotify-server-push">
+  <div class="form-row">
+    <label for="node-config-input-appName"
+      ><i class="fa fa-tag"></i> App Name</label
+    >
+    <input type="text" id="node-config-input-appName" />
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-server"
+      ><i class="fa fa-server"></i> Server</label
+    >
+    <input type="text" id="node-config-input-server" />
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-token"><i class="fa fa-key"></i> Token</label>
+    <input type="text" id="node-config-input-token" />
+  </div>
+</script>

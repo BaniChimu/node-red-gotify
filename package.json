@@ -1,0 +1,20 @@
+{
+  "name": "node-red-gotify",
+  "node-red": {
+    "nodes": {
+      "push": "nodes/push/gotify-push.js",
+      "subscribe": "nodes/subscribe/gotify-subscribe.js",
+      "push-configuration": "nodes/push-configuration/gotify-server-push.js",
+      "subscribe-configuration": "nodes/subscribe-configuration/gotify-server-subscribe.js"
+    }
+  },
+  "version": "1.0.0",
+  "keywords": [],
+  "author": "Dominika Jadowska",
+  "license": "GNU General Public License v3.0",
+  "description": "A node-red module for sending and subscribing to notifications from Gotify",
+  "dependencies": {
+    "axios": "^1.7.9"
+  },
+  "repository": "https://github.com/djadowska/node-red-contrib-gotify"
+}

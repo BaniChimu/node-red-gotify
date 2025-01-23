@@ -1,0 +1,102 @@
+<script type="text/javascript">
+  RED.nodes.registerType("push", {
+    category: "gotify",
+    color: "#808dd9",
+    defaults: {
+      name: { value: "" },
+      title: { value: "" },
+      message: { value: "" },
+      priority: { value: 5 },
+      extras: { value: "" },
+      client: { value: "" },
+      override: { value: false },
+      server: { value: "", type: "gotify-server-push" },
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "font-awesome/fa-bell-o",
+    label: function () {
+      return this.name || "Gotify Push";
+    },
+  });
+</script>
+
+<script type="text/html" data-template-name="push">
+  <div class="form-row">
+    <label for="node-input-name"> <i class="fa fa-tag"></i> Name </label>
+    <input type="text" id="node-input-name" placeholder="Name" />
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-title"> <i class="fa fa-bullhorn"></i> Title </label>
+    <input type="text" id="node-input-title" placeholder="Title" />
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-message">
+      <i class="fa fa-envelope"></i> Message
+    </label>
+    <input type="text" id="node-input-message" placeholder="Message" />
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-priority">
+      <i class="fa fa-exclamation-circle"></i> Priority
+    </label>
+    <select id="node-input-priority">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5" selected>5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+    </select>
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-extras"> <i class="fa fa-cogs"></i> Extras </label>
+    <input type="text" id="node-input-extras" placeholder="Extras" />
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-server"> <i class="fa fa-server"></i> Server </label>
+    <select id="node-input-server" type="gotify-server-push">
+      <option value=""></option>
+    </select>
+  </div>
+
+  <div class="form-row">
+    <div class="form-checkbox" style="display: flex; align-items: center">
+      <input type="checkbox" id="node-input-override" />
+      <label style="width: 100%;" for="node-input-override">
+        Block input overrides
+      </label>
+    </div>
+  </div>
+</script>
+
+<script type="text/html" data-help-name="push">
+  <p>A node allowing you to push messages to your gotify server.</p>
+  <ul>
+    <li>
+      <b>title</b> - The title of the message to be sent to gotify
+      <br />
+    </li>
+    <li>
+      <b>message</b> - The message to be sent to gotify
+      <br />
+    </li>
+    <li>
+      <b>priority</b> - The priority of the message to be sent to gotify
+      <br />
+    </li>
+    <li>
+      <b>extras</b> - The extras of the message to be sent to gotify
+      <br />
+    </li>
+  </ul>
+</script>
