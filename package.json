@@ -19,5 +19,6 @@
   "dependencies": {
     "axios": "^1.7.9"
   },
-  "repository": "https://github.com/BaniChimu/node-red-gotify"
+  "repository": "https://github.com/BaniChimu/node-red-gotify",
+  "bugs": "https://github.com/BaniChimu/node-red-gotify/issues"
 }
