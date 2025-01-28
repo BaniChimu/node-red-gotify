@@ -1,4 +1,4 @@
-# Node-RED Gotify Integration
+# <span style="display: flex; align-items: center;"><img src="https://github.com/BaniChimu/node-red-gotify/raw/main/images/icon.png" height="100"/>Node-RED Gotify Integration</span>
 
 ![Node-RED Gotify](https://github.com/BaniChimu/node-red-gotify/blob/main/images/generic.png?raw=true)
 
