@@ -17,34 +17,39 @@ module.exports = function (RED) {
           return;
         }
 
-        const message = config.override
-          ? config.message
-          : msg.message || msg.payload;
-
-        const requestData = {
-          message:
-            typeof message === "string" ? message : JSON.stringify(message),
-          title: config.override
-            ? typeof config.title === "string"
-              ? config.title
-              : JSON.stringify(config.title || msg.title)
-            : typeof msg.title === "string"
-            ? msg.title
-            : JSON.stringify(msg.title),
-          priority: config.override
-            ? config.priority || msg.priority
-            : msg.priority,
-          extras: config.override ? config.extras : msg.extras,
+        requestData = {
           server: serverConfig.server,
           token: serverConfig.token,
         };
+
+        if (!config.override) {
+          requestData.message = config.message;
+          requestData.title = config.title;
+          requestData.priority = config.priority || 5;
+          requestData.extras = config.extras || {};
+        } else {
+          requestData.message = msg.message || msg.payload;
+          requestData.title = msg.title || msg.payload;
+          requestData.priority = msg.priority || 5;
+          requestData.extras = msg.extras || {};
+        }
+
+        console.log(requestData);
+
+        if (!requestData.message || !requestData.title) {
+          node.error(
+            new Error(
+              "Message and title must be defined. Please check your input."
+            )
+          );
+          return;
+        }
 
         const response = await postToGotify(requestData);
         msg.gotify = response;
         node.send(msg);
       } catch (error) {
         node.error(error, msg);
-        console.log(error);
       }
     });
   }
@@ -64,10 +69,10 @@ async function postToGotify({
     const response = await axios.post(
       `${server}/message`,
       {
-        message,
-        title,
-        priority: Number(priority),
-        extras,
+        message: message || "",
+        title: title || "",
+        priority: priority || 5,
+        extras: extras || {},
       },
       {
         headers: {
