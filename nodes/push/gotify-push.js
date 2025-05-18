@@ -22,19 +22,17 @@ module.exports = function (RED) {
           token: serverConfig.token,
         };
 
-        if (!config.override) {
+        if (config.override) {
           requestData.message = config.message;
           requestData.title = config.title;
           requestData.priority = Math.round(config.priority) || 5;
           requestData.extras = config.extras || {};
         } else {
-          requestData.message = msg.message || msg.payload;
-          requestData.title = msg.title || msg.payload;
-          requestData.priority = msg.priority || 5;
-          requestData.extras = msg.extras || {};
+          requestData.message = msg.message || msg.payload || config.message;
+          requestData.title = msg.title || msg.topic || config.title;
+          requestData.priority = msg.priority || Math.round(config.priority) || 5;
+          requestData.extras = msg.extras || config.extras || {};
         }
-
-        console.log(requestData);
 
         if (!requestData.message || !requestData.title) {
           node.error(
