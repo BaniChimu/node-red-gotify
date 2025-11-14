@@ -2,12 +2,14 @@
   RED.nodes.registerType("gotify-server-push", {
     category: "config",
     defaults: {
-      server: { value: "https://your.gotify.server", required: true },
+      connectionType: { value: "http", required: true },
+      server: { value: "https://your.gotify.server", required: false },
+      socketPath: { value: "", required: false },
       token: { value: "", required: true },
       appName: { value: "Your App Name" },
     },
     label: function () {
-      return this.appName || this.server;
+      return this.appName || (this.connectionType === 'socket' ? this.socketPath : this.server);
     },
   });
 </script>
@@ -20,13 +22,40 @@
     <input type="text" id="node-config-input-appName" />
   </div>
   <div class="form-row">
+    <label for="node-config-input-connectionType"><i class="fa fa-random"></i> Connection Type</label>
+    <select id="node-config-input-connectionType">
+      <option value="http">HTTP(S)</option>
+      <option value="socket">Unix Socket</option>
+    </select>
+  </div>
+  <div class="form-row" id="form-row-server">
     <label for="node-config-input-server"
       ><i class="fa fa-server"></i> Server</label
     >
     <input type="text" id="node-config-input-server" />
   </div>
+  <div class="form-row" id="form-row-socketPath" style="display:none;">
+    <label for="node-config-input-socketPath"><i class="fa fa-terminal"></i> Socket Path</label>
+    <input type="text" id="node-config-input-socketPath" placeholder="/path/to/socket" />
+  </div>
   <div class="form-row">
     <label for="node-config-input-token"><i class="fa fa-key"></i> Token</label>
     <input type="text" id="node-config-input-token" />
   </div>
+  <script type="text/javascript">
+    $(function() {
+      function toggleConnectionFields() {
+        var type = $("#node-config-input-connectionType").val();
+        if (type === "socket") {
+          $("#form-row-server").hide();
+          $("#form-row-socketPath").show();
+        } else {
+          $("#form-row-server").show();
+          $("#form-row-socketPath").hide();
+        }
+      }
+      $("#node-config-input-connectionType").on("change", toggleConnectionFields);
+      setTimeout(toggleConnectionFields, 0);
+    });
+  </script>
 </script>

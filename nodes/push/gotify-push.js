@@ -18,7 +18,9 @@ module.exports = function (RED) {
         }
 
         requestData = {
+          connectionType: serverConfig.connectionType || "http",
           server: serverConfig.server,
+          socketPath: serverConfig.socketPath,
           token: serverConfig.token,
         };
 
@@ -55,8 +57,13 @@ module.exports = function (RED) {
   RED.nodes.registerType("gotify-push", PushToGotify);
 };
 
+const http = require("http");
+const https = require("https");
+
 async function postToGotify({
+  connectionType = "http",
   server,
+  socketPath,
   token,
   message,
   title,
@@ -64,20 +71,36 @@ async function postToGotify({
   extras,
 }) {
   try {
+    let axiosConfig = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    let url = "";
+    if (connectionType === "socket" && socketPath) {
+      // Use Unix socket
+      url = `http://unix:/message`;
+      axiosConfig.socketPath = socketPath;
+      axiosConfig.baseURL = "http://unix/";
+      axiosConfig.httpAgent = new http.Agent({ socketPath });
+    } else {
+      url = `${server}/message`;
+      if (server.startsWith("https://")) {
+        axiosConfig.httpsAgent = new https.Agent();
+      } else {
+        axiosConfig.httpAgent = new http.Agent();
+      }
+    }
     const response = await axios.post(
-      `${server}/message`,
+      url,
       {
         message: message || "",
         title: title || "",
         priority: priority || 5,
         extras: extras || {},
       },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
+      axiosConfig
     );
     return response.data;
   } catch (error) {

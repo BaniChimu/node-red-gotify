@@ -16,8 +16,12 @@ npm install node-red-contrib-gotify-notification
 
 ![Publish Node](https://github.com/BaniChimu/node-red-gotify/raw/main/images/node-publish.png?raw=true)
 
+
 ### Configuration:
 
+- **Connection Type**: Choose between HTTP(S) or Unix Socket for connecting to your Gotify server.
+  - If **HTTP(S)** is selected, provide the server URL (e.g., `https://your.gotify.server`).
+  - If **Unix Socket** is selected, provide the path to the Unix socket file (e.g., `/run/gotify.sock`).
 - **Override**: Determines if the `title`, `message`, `priority`, and `extras` properties from incoming messages should be overwritten.
 - **Title**: Specifies the notification title.
 - **Message**: The main text of the notification.
